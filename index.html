@@ -7,14 +7,53 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <!-- Шапка з навігацією та пошуком -->
-    
-    <!-- Блок фільтрів (кількість гравців, жанр) -->
-    
-    <!-- Список карток ігор -->
-    
-    <!-- Підвал -->
-    
+    <header>
+        <h1>Каталог настільних ігор</h1>
+        <nav>
+            <a href="#strategy">Стратегічні ігри</a>
+            <a href="#family">Сімейні ігри</a>
+            <a href="#card">Карткові ігри</a>
+            <a href="#kids">Для дітей</a>
+        </nav>
+    </header>
+
+    <main>
+        <section id="filters">
+            <h2>Фільтри</h2>
+            <form action="#"></form>
+                <label for="search">Пошук ігор:</label>
+                <input type="text" id="search" placeholder="Введіть назву гри" name="game">
+            </form>
+        </section>
+
+        <section id ="games">
+            <h2>Ігри</h2>
+            <article class="game-card">
+                <h3>AZUL 1</h3>
+                <p>Стратегічна гра для 2-4 гравців</p>
+                <img src="assets/img/azul.jpg" alt="AZUL 1">
+            </article>
+            <article class="game-card">
+                <h3>ФЕРМА</h3>
+                <p>Сімейна гра для 2-4 гравців</p>
+                <img src="assets/img/farm.jpg" alt="ФЕРМА">
+            </article>
+            <article class="game-card">
+                <h3>UNO</h3>
+                <p>Карткова гра для 2-10 гравців</p>
+                <img src="assets/img/uno.jpg" alt="UNO">
+            </article>
+            <article class="game-card">
+                <h3>ВИБУХОВІ КОШЕНЯТА</h3>
+                <p>Карткова гра для дітей та дорослих</p>
+                <img src="assets/img/bomb-cats.jpg" alt="ВИБУХОВІ КОШЕНЯТА">
+            </article>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Каталог настільних ігор. Всі права захищені.</p>
+    </footer>
     <script src="js/app.js"></script>
 </body>
 </html>
