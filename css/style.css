@@ -1,0 +1,104 @@
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #6b2494;
+    color: #ffffff;
+}
+
+header {
+    background-color: #ffc800;
+    padding: 20px 40px;
+    text-align: center;
+    border-bottom: 4px solid #05b3a4;
+}
+
+/*#6b2494*/
+
+header nav {
+    margin-top: 15px;
+}
+
+header nav a {
+    color: #ffffff;
+    margin-right: 20px;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1.1rem;
+}
+
+header nav a:hover {
+    color: #05b3a4;
+}
+
+main {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+section {
+    margin-bottom: 40px;
+}
+
+form {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    color: #000000;
+}
+
+form input {
+    padding: 8px 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    flex: 1;
+}
+
+#games {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+#games h2 {
+    grid-column: 1 / -1;
+    margin-bottom: 20px;
+}
+
+.game-card {
+    background-color: white;
+    color: #000000;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease;
+}
+
+.game-card:hover {
+    box-shadow: 0 0 25px 10px #05b3a4;
+}
+/*05b3a4*/
+
+.game-card img {
+    width: 100%;
+    height: 180px;
+    object-fit: contain;
+    border-radius: 6px;
+    margin-bottom: 15px;
+}
+
+footer {
+    text-align: center;
+    padding: 30px;
+    font-size: 0.875rem;
+    color: #666;
+    background-color: #e0e0e0;
+}
