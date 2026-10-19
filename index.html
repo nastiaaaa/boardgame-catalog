@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Каталог настільних ігор</title>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@800&family=Fredoka:wght@600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -25,6 +26,7 @@
             <form action="#">
                 <label for="search">Пошук ігор:</label>
                 <input type="text" id="search" placeholder="Введіть назву гри" name="game">
+                <button type="submit" class="btn-filter">Шукати</button>
             </form>
         </section>
 
@@ -32,22 +34,26 @@
             <h2>Ігри</h2>
             <article class="game-card">
                 <h3>AZUL 1</h3>
-                <p>Стратегічна гра для 2-4 гравців</p>
+                <span class="player-badge">2-4 гравці</span>
+                <p>Стратегічна гра, де ви стаєте майстром мозаїки.</p>
                 <img src="assets/img/azul.jpg" alt="AZUL 1">
             </article>
             <article class="game-card">
                 <h3>ФЕРМА</h3>
-                <p>Сімейна гра для 2-4 гравців</p>
+                <span class="player-badge">2-4 гравці</span>
+                <p>Весела сімейна гра про розведення тварин.</p>
                 <img src="assets/img/farm.jpg" alt="ФЕРМА">
             </article>
             <article class="game-card">
                 <h3>UNO</h3>
-                <p>Карткова гра для 2-10 гравців</p>
+                <span class="player-badge">2-10 гравців</span>
+                <p>Швидка та динамічна карткова гра для компанії.</p>
                 <img src="assets/img/uno.jpg" alt="UNO">
             </article>
             <article class="game-card">
                 <h3>ВИБУХОВІ КОШЕНЯТА</h3>
-                <p>Карткова гра для дітей та дорослих</p>
+                <span class="player-badge">2-6 гравців</span>
+                <p>Епічна карткова гра для дітей та дорослих.</p>
                 <img src="assets/img/bomb-cats.jpg" alt="ВИБУХОВІ КОШЕНЯТА">
             </article>
         </section>
