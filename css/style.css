@@ -97,16 +97,40 @@ form input {
     background-color: #049286;
 }
 
-#games {
+#games-list {
     display: grid;
     grid-template-columns: 1fr;
     gap: 20px;
 }
 
-#games h2 {
+#games-count {
+    font-weight: 800;
+    font-size: 1.2rem;
+    color: #ffc800;
+    margin-bottom: 20px;
+}
+
+.game-card.fits {
+    border: 3px solid #05b3a4;
+    background-color: #f0fdfa;
+}
+
+@media (min-width: 600px) {
+    #games-list {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (min-width: 1024px) {
+    #games-list {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    }
+}
+
+#games-section h2 {
     margin-bottom: 0;
     font-size: 2rem;
-    color: #ffc800;
+    color: #05b3a4;
 }
 
 .game-card {

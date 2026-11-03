@@ -9,37 +9,61 @@ const games = [
 //Перевірка чи входить задана кількість гравців у діапазон гри
 const fitsPlayers = (game, n) => n >= game.minPlayers && n <= game.maxPlayers;
 
-//Виклик стрілкової функції з реальними даними та вивід у консоль
-console.log("Перевірка роботи стрілкової функції:");
-console.log('Чи підходить гра "AZUL 1" для 5 гравців?', fitsPlayers(games[0], 5)); // має бути false
-console.log('Чи підходить гра "UNO" для 5 гравців?', fitsPlayers(games[2], 5)); // має бути true
+//Вибір контейнера для списку ігор
+const listContainer = document.querySelector('#games-list');
 
-//Звичайна функція яка шукає ігри для певної кількості людей
-function findGamesForPlayers(targetPlayers) {
-    console.log(`\nПідбір ігор для ${targetPlayers} гравців`);
-    
-    let count = 0; //Змінна для підрахунку знайдених ігор(let, бо значення змінюється)
+//Вибір підсумкового елемента
+const gamesCountElement = document.querySelector('#games-count');
 
-    //Цикл for...of для перебору масиву
-    for (const game of games) {
-
-        //Умова: перевірка чи підходить кількість гравців
-        if (fitsPlayers(game, targetPlayers)) {
-            console.log(`Гра "${game.title}" підходить. (Гравців: ${game.minPlayers}-${game.maxPlayers})`);
-            count++;
-        } else {
-            console.log(`Гра "${game.title}" не підходить.`);
-        }
-    }
-
-    //Тернарний оператор для підсумкового повідомлення
-    const resultMessage = count > 0 
-        ? `Всього знайдено ігор: ${count}` 
-        : `На жаль, для ${targetPlayers} гравців ігор не знайдено.`;
-    
-    console.log(resultMessage);
+//Видалення статичного прикладу з HTML за допомогою .remove()
+if (listContainer) {
+    const staticCards = listContainer.querySelectorAll('.game-card');
+    staticCards.forEach(card => card.remove());
 }
 
-//Виклик функції циклу для різних ситуацій
-findGamesForPlayers(3); //Пошук для 3 гравців
-findGamesForPlayers(8); //Пошук для 8 гравців
+ //Функція рендеру списку ігор у DOM
+ //Параметр gamesArray - масив об'єктів ігор
+function renderGames(gamesArray) {
+    if (!listContainer) return;
+
+    //Очищення вмісту контейнера перед виводом
+    listContainer.innerHTML = '';
+
+    //Створення елементів для кожного запису
+    gamesArray.forEach(game => {
+        //Створення картки гри
+        const card = document.createElement('article');
+        card.classList.add('game-card');
+
+        //Створення заголовка
+        const title = document.createElement('h3');
+        title.textContent = game.title;
+
+        //Створення абзацу для кількості гравців
+        const playersInfo = document.createElement('p');
+        playersInfo.textContent = `${game.minPlayers}-${game.maxPlayers} гравців`;
+        playersInfo.classList.add('player-badge');
+
+        //Встановлення data-атрибута data-players
+        card.dataset.players = `${game.minPlayers}-${game.maxPlayers}`;
+
+        //Додання умовного класу fits, якщо гра підходить для 4 гравців
+        if (fitsPlayers(game, 4)) {
+            card.classList.add('fits');
+        }
+
+        //Вкладення заголовка і тексту у картку
+        card.append(title, playersInfo);
+
+        //Додання створенпї картки в контейнер
+        listContainer.append(card);
+    });
+
+    //Оновлення підсумкового елементу
+    if (gamesCountElement) {
+        gamesCountElement.textContent = `Кількість ігор у списку: ${gamesArray.length}`;
+    }
+}
+
+//Виклик функції рендеру одразу при завантаженні
+renderGames(games);
