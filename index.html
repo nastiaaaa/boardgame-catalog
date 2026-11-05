@@ -24,11 +24,40 @@
     <main>
         <section id="filters">
             <h2>Фільтри</h2>
-            <form action="#">
-                <label for="search">Пошук ігор:</label>
-                <input type="text" id="search" placeholder="Введіть назву гри" name="game">
-                <button type="submit" class="btn-filter">Шукати</button>
+            <form action="#" id="filter-form">
+                <label for="player-filter">Кількість гравців:</label>
+                <select id="player-filter" name="players">
+                    <option value="all">Всі ігри</option>
+                    <option value="1">1 гравець</option>
+                    <option value="2">2 гравці</option>
+                    <option value="3">3 гравці</option>
+                    <option value="4">4 гравці</option>
+                    <option value="5">5+ гравців</option>
+                </select>
             </form>
+        </section>
+
+        <section id="add-game-section">
+            <h2>Додати нову гру</h2>
+            <form id="add-game-form">
+                <input type="text" id="title" placeholder="Назва гри" required>
+                
+                <input type="number" id="minPlayers" placeholder="Мін. гравців" min="1" required>
+                
+                <input type="number" id="maxPlayers" placeholder="Макс. гравців" min="1" required>
+                
+                <select id="genre" required>
+                    <option value="" disabled selected>Оберіть жанр</option>
+                    <option value="Стратегічна">Стратегічна</option>
+                    <option value="Сімейна">Сімейна</option>
+                    <option value="Карткова">Карткова</option>
+                    <option value="Дитяча">Дитяча</option>
+                    <option value="Паті-гейм">Паті-гейм</option>
+                </select>
+                
+                <button type="submit" class="btn-filter">Додати</button>
+            </form>
+            <p id="error-message" style="color: #ff3333; font-weight: bold; display: none; margin-top: 10px;"></p>
         </section>
 
         <section id="games-section">
@@ -36,14 +65,6 @@
             <p id="games-count"></p> 
             
             <div id="games-list">
-                <article class="game-card">
-                    <h3>AZUL 1</h3>
-                    <p class="player-badge">2-4 гравці</p>
-                </article>
-                <article class="game-card">
-                    <h3>UNO</h3>
-                    <p class="player-badge">2-10 гравців</p>
-                </article>
             </div>
         </section>
     </main>
