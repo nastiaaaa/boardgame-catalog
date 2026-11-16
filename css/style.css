@@ -200,6 +200,56 @@ form select {
     width: 100%;
 }
 
+.game-genre {
+    font-weight: bold;
+    color: #05b3a4;
+    margin-bottom: 8px;
+    cursor: pointer;
+    display: inline-block;
+    padding: 4px 8px;
+    border-radius: 6px;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+.game-genre:hover {
+    background-color: rgba(5, 179, 164, 0.15);
+    text-decoration: underline;
+}
+
+.game-status {
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+.genre-filter-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background-color: #6b2494;
+    color: #ffffff;
+    padding: 8px 14px;
+    border-radius: 20px;
+    font-size: 0.95rem;
+}
+
+.btn-clear-genre {
+    background: #ffc800;
+    color: #000;
+    border: none;
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+    font-weight: bold;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-clear-genre:hover {
+    background: #e0b000;
+}
+
 footer {
     text-align: center;
     padding: 30px;

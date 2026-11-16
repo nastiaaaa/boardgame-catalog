@@ -6,6 +6,7 @@
     <title>Каталог настільних ігор</title>
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@800&family=Fredoka:wght@600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
     <script src="script.js" defer></script>
 </head>
 <body>
@@ -21,12 +22,12 @@
         </nav>
     </header>
 
-    <main>
+    <main id="app">
         <section id="filters">
             <h2>Фільтри</h2>
-            <form action="#" id="filter-form">
+            <form @submit.prevent id="filter-form">
                 <label for="player-filter">Кількість гравців:</label>
-                <select id="player-filter" name="players">
+                <select id="player-filter" name="players" v-model="selectedPlayers">
                     <option value="all">Всі ігри</option>
                     <option value="1">1 гравець</option>
                     <option value="2">2 гравці</option>
@@ -34,41 +35,64 @@
                     <option value="4">4 гравці</option>
                     <option value="5">5+ гравців</option>
                 </select>
+
+                <div v-if="selectedGenre" class="genre-filter-badge">
+                    <span>Жанр: <strong>{{ selectedGenre }}</strong></span>
+                    <button type="button" @click="selectedGenre = ''" class="btn-clear-genre" title="Скинути фільтр жанру">✕</button>
+                </div>
             </form>
         </section>
 
         <section id="add-game-section">
             <h2>Додати нову гру</h2>
-            <form id="add-game-form">
-                <input type="text" id="title" placeholder="Назва гри" required>
-                
-                <input type="number" id="minPlayers" placeholder="Мін. гравців" min="1" required>
-                
-                <input type="number" id="maxPlayers" placeholder="Макс. гравців" min="1" required>
-                
-                <select id="genre" required>
-                    <option value="" disabled selected>Оберіть жанр</option>
+            <form id="add-game-form" @submit.prevent="addGame">
+                <input type="text" v-model.trim="newGame.title" placeholder="Назва гри" required>
+                <input type="number" v-model.number="newGame.minPlayers" placeholder="Мін. гравців" min="1" required>
+                <input type="number" v-model.number="newGame.maxPlayers" placeholder="Макс. гравців" min="1" required>
+                <select v-model="newGame.genre" required>
+                    <option value="" disabled>Оберіть жанр</option>
                     <option value="Стратегічна">Стратегічна</option>
                     <option value="Сімейна">Сімейна</option>
                     <option value="Карткова">Карткова</option>
                     <option value="Дитяча">Дитяча</option>
                     <option value="Паті-гейм">Паті-гейм</option>
                 </select>
-                
                 <button type="submit" class="btn-filter">Додати</button>
             </form>
-            <p id="error-message" style="color: #ff3333; font-weight: bold; display: none; margin-top: 10px;"></p>
+            <p v-if="formError" style="color: #ff3333; font-weight: bold; margin-top: 10px;">
+                {{ formError }}
+            </p>
         </section>
 
         <section id="games-section">
             <h2>Ігри</h2>
-            <button id="refresh-btn" class="btn-filter" style="margin-bottom: 15px;">Оновити дані</button>
-            <p id="loading-indicator" style="display: none; font-weight: bold; color: #ffc800; font-size: 1.2rem;">Завантаження даних...</p>
-            <p id="api-error-message" style="display: none; color: #ff3333; font-weight: bold; font-size: 1.2rem; background: #fff; padding: 10px; border-radius: 8px; border: 2px solid #ff3333;"></p>
-
-            <p id="games-count"></p> 
+            <button @click="loadData" :disabled="isLoading" class="btn-filter" style="margin-bottom: 15px;">
+                Оновити дані
+            </button>
             
-            <div id="games-list">
+            <p v-if="isLoading" style="font-weight: bold; color: #ffc800; font-size: 1.2rem;">
+                Завантаження даних...
+            </p>
+            
+            <p v-if="apiError" style="color: #ff3333; font-weight: bold; font-size: 1.2rem; background: #fff; padding: 10px; border-radius: 8px; border: 2px solid #ff3333;">
+                {{ apiError }}
+            </p>
+
+            <p v-if="!isLoading && !apiError" id="games-count">
+                Кількість ігор у списку: {{ filteredGames.length }}
+            </p> 
+            
+            <div id="games-list" v-if="!isLoading">
+                <game-card
+                    v-for="game in filteredGames"
+                    :key="game.id"
+                    :title="game.title"
+                    :min-players="game.minPlayers"
+                    :max-players="game.maxPlayers"
+                    :genre="game.genre"
+                    :completed="game.completed"
+                    @filter="filterByGenre"
+                ></game-card>
             </div>
         </section>
     </main>
